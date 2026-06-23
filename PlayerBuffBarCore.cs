@@ -1,4 +1,4 @@
-namespace PlayerBuffBar
+﻿namespace PlayerBuffBar
 {
     using System;
     using System.Collections.Generic;
@@ -377,7 +377,7 @@ namespace PlayerBuffBar
                 return;
             }
 
-            if (inGame.GameUi.ShouldHideWorldSpaceBars && !positioningDummyActive)
+            if (WorldSpaceBarVisibility.ShouldHide(inGame.GameUi) && !positioningDummyActive)
             {
                 return;
             }
@@ -1218,7 +1218,7 @@ namespace PlayerBuffBar
             return string.Join(" ", parts);
         }
 
-        private string FormatInactiveLabel(string watchId) => $"{PrettyName(watchId)} — {L("off", "aus")}";
+        private string FormatInactiveLabel(string watchId) => $"{PrettyName(watchId)} â€” {L("off", "aus")}";
 
         private string BuildResourceLine(Stats? stats)
         {
@@ -1479,7 +1479,7 @@ namespace PlayerBuffBar
         /// <summary>Above map overlays (e.g. Wraedar); hidden while GameHelper settings are open.</summary>
         private static ImDrawListPtr GetHudDrawList() => ImGui.GetForegroundDrawList();
 
-        /// <summary>PoE or GameHelper overlay/settings focused — not e.g. Discord.</summary>
+        /// <summary>PoE or GameHelper overlay/settings focused â€” not e.g. Discord.</summary>
         private static bool IsGameOrOverlayForeground() =>
             Core.Process.Foreground ||
             Process.GetCurrentProcess().MainWindowHandle == GetForegroundWindow();
